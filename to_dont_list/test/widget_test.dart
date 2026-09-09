@@ -87,4 +87,25 @@ void main() {
   });
 
   // One to test the tap and press actions on the items?
+  testWidgets('Tap and Press actions on items work', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ToDoList()));
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'hello');
+    await tester.pump();
+    await tester.tap(find.byKey(const Key("OKButton")));
+    await tester.pump();
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pump();
+    expect(find.text('hello'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key("LTKeyhello")));
+    await tester.pump(const Duration(seconds: 5));
+
+    await tester.tap(find.byKey(const Key("LTKeyhello")));
+    await tester.pump(const Duration(seconds: 5));
+    expect(find.text('hello'), findsNothing);
+  });
 }
