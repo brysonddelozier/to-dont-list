@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:to_dont_list/objects/item.dart';
+import 'package:shopping_list/objects/grocery.dart';
 
-typedef ToDoListChangedCallback = Function(Item item, bool completed);
-typedef ToDoListRemovedCallback = Function(Item item);
+typedef ShoppingListChangedCallback = Function(Grocery grocery, bool completed);
+typedef ShoppingListRemovedCallback = Function(Grocery grocery);
 
-class ToDoListItem extends StatelessWidget {
-  ToDoListItem(
-      {required this.item,
+class ShoppingListGrocery extends StatelessWidget {
+  ShoppingListGrocery(
+      {required this.grocery,
       required this.completed,
       required this.onListChanged,
-      required this.onDeleteItem})
-      : super(key: ObjectKey(item));
+      required this.onDeleteGrocery})
+      : super(key: ObjectKey(grocery));
 
-  final Item item;
+  final Grocery grocery;
   final bool completed;
 
-  final ToDoListChangedCallback onListChanged;
-  final ToDoListRemovedCallback onDeleteItem;
+  final ShoppingListChangedCallback onListChanged;
+  final ShoppingListRemovedCallback onDeleteGrocery;
 
   Color _getColor(BuildContext context) {
     // The theme depends on the BuildContext because different
@@ -41,22 +41,22 @@ class ToDoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      key: Key("LTKey" + item.name),
+      key: Key("LTKey" + grocery.name),
       onTap: () {
-        onListChanged(item, completed);
+        onListChanged(grocery, completed);
         print(completed);
       },
       onLongPress: completed
           ? () {
-              onDeleteItem(item);
+              onDeleteGrocery(grocery);
             }
           : null,
       leading: CircleAvatar(
         backgroundColor: _getColor(context),
-        child: Text(item.abbrev()),
+        child: Text(grocery.abbrev()),
       ),
       title: Text(
-        item.name,
+        grocery.name + r' $' + grocery.price.toStringAsFixed(2),
         style: _getTextStyle(context),
       ),
     );
