@@ -119,7 +119,7 @@ class _ShoppingListState extends State<ShoppingList> {
         children: [
           FloatingActionButton.large(
             child: const Text('Add a Grocery'),
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.orange,
             heroTag: 'addGroceryButton',
             onPressed: () {
               showDialog(
@@ -129,7 +129,18 @@ class _ShoppingListState extends State<ShoppingList> {
                   });
             }
           ),
-          FloatingActionButton.large(
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.fromLTRB(16, 24, 16, 4),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.green.shade100,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.green.shade700,
+              ),
+            ),
+            child:FloatingActionButton.large(
             child: const Text('Checkout'),
             backgroundColor: Colors.green,
             heroTag: 'checkoutButton',
@@ -148,7 +159,7 @@ class _ShoppingListState extends State<ShoppingList> {
                   content: Text('You checked out. The list was cleared.'),
                 ),
               );
-            }
+            }),
           ),
         ],
       ),
