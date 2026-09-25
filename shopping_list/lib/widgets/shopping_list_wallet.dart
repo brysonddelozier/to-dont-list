@@ -27,8 +27,8 @@ class _ShoppingListWalletState extends State<ShoppingListWallet> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.fromLTRB(16, 24, 16, 4),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.green.shade100,
         borderRadius: BorderRadius.circular(12),
